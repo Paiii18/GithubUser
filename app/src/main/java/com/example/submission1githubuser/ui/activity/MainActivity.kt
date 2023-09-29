@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1githubuser.ui.viewmodel.MainViewModel
 import com.example.submission1githubuser.ui.adapter.SearchAdapter
-import com.example.submission1githubuser.ui.respon.ItemsItem
+import com.example.submission1githubuser.data.remote.respon.ItemsItem
 
 import com.example.submission1githubuser.databinding.ActivityMainBinding
 

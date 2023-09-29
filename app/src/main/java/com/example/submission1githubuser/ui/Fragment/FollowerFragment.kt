@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1githubuser.databinding.FragmentFollowerBinding
 import com.example.submission1githubuser.ui.activity.DetailActivity
 import com.example.submission1githubuser.ui.adapter.FollowersAdapter
-import com.example.submission1githubuser.ui.respon.FollowersResponseItem
+import com.example.submission1githubuser.data.remote.respon.FollowersResponseItem
 import com.example.submission1githubuser.ui.viewmodel.MainViewModel
 
 

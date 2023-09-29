@@ -4,11 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.submission1githubuser.ui.respon.DetailResponse
-import com.example.submission1githubuser.ui.respon.FollowersResponseItem
-import com.example.submission1githubuser.ui.respon.ItemsItem
-import com.example.submission1githubuser.ui.respon.SearchResponse
-import com.example.submission1githubuser.ui.retrofit.ApiConfig
+import com.example.submission1githubuser.data.remote.respon.DetailResponse
+import com.example.submission1githubuser.data.remote.respon.FollowersResponseItem
+import com.example.submission1githubuser.data.remote.respon.ItemsItem
+import com.example.submission1githubuser.data.remote.respon.SearchResponse
+import com.example.submission1githubuser.data.remote.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

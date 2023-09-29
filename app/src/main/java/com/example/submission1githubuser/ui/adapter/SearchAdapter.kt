@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.submission1githubuser.ui.respon.ItemsItem
+import com.example.submission1githubuser.data.remote.respon.ItemsItem
 import com.example.submission1githubuser.databinding.ItemUserBinding
 
 class SearchAdapter (private val onItemClickListener: OnItemClickListener) : ListAdapter<ItemsItem, SearchAdapter.MyViewHolder>(DIFF_CALLBACK){

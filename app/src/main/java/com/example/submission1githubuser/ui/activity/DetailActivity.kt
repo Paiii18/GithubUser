@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.submission1githubuser.R
 import com.example.submission1githubuser.databinding.ActivityDetailBinding
 import com.example.submission1githubuser.ui.adapter.SectionsPagerAdapter
-import com.example.submission1githubuser.ui.respon.DetailResponse
+import com.example.submission1githubuser.data.remote.respon.DetailResponse
 import com.example.submission1githubuser.ui.viewmodel.MainViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

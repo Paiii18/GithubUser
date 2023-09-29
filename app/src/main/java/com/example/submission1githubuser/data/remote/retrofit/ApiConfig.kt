@@ -1,4 +1,4 @@
-package com.example.submission1githubuser.ui.retrofit
+package com.example.submission1githubuser.data.remote.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

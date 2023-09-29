@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.submission1githubuser.databinding.ItemUserBinding
-import com.example.submission1githubuser.ui.respon.FollowersResponseItem
+import com.example.submission1githubuser.data.remote.respon.FollowersResponseItem
 
 class FollowersAdapter(private val onItemClickListener: OnItemClickListener) :
     ListAdapter<FollowersResponseItem, FollowersAdapter.MyViewHolder>(DIFF_CALLBACK) {

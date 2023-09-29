@@ -1,20 +1,19 @@
 package com.example.submission1githubuser.ui.activity
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CompoundButton
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
+
 import com.example.submission1githubuser.R
-import com.example.submission1githubuser.ui.viewmodel.MainViewModel
+import com.example.submission1githubuser.ui.viewmodel.ThemeViewModel
 import com.example.submission1githubuser.ui.viewmodel.ViewModelFactory
 import com.example.submission1githubuser.utils.SettingPreferences.SettingPreferences
 import com.example.submission1githubuser.utils.SettingPreferences.dataStore
 import com.google.android.material.switchmaterial.SwitchMaterial
 
-
 class SettingActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
@@ -23,9 +22,9 @@ class SettingActivity : AppCompatActivity() {
 
         val pref = SettingPreferences.getInstance(application.dataStore)
         val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
-            MainViewModel::class.java
+            ThemeViewModel::class.java
         )
-        mainViewModel.getThemeSetting().observe(this) { isDarkModeActive: Boolean ->
+        mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 switchTheme.isChecked = true

@@ -1,3 +1,5 @@
+package com.example.submission1githubuser.ui.Fragment
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -38,7 +40,7 @@ class FollowingFragment ( val username :String): Fragment(), FollowersAdapter.On
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        Log.i("FollowingFragment", "onViewCreated: $username")
+        Log.i("com.example.submission1githubuser.ui.Fragment.FollowingFragment", "onViewCreated: $username")
         mainViewModel.fetchDataFollowing(username)
         val layoutManager = LinearLayoutManager(context)
 

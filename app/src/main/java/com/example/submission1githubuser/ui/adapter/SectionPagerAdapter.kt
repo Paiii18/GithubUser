@@ -1,6 +1,6 @@
 package com.example.submission1githubuser.ui.adapter
 
-import FollowingFragment
+import com.example.submission1githubuser.ui.Fragment.FollowingFragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

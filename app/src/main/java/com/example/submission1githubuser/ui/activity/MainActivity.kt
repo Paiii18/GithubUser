@@ -106,15 +106,13 @@ class MainActivity : AppCompatActivity(),
         moveWithDataIntent.putExtra(DetailActivity.EXTRA_NAME, username)
         startActivity(moveWithDataIntent)
     }
-
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.option_menu, menu)
-        return true
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+        when (item.itemId) {
             R.id.menu1 -> {
                 Log.i("MainActivity", "onOptionsItemSelected: Setting")
                 val intent = Intent(this@MainActivity, SettingActivity::class.java)
@@ -129,9 +127,10 @@ class MainActivity : AppCompatActivity(),
                 startActivity(intent)
                 true
             }
-
-            else -> super.onOptionsItemSelected(item)
-
         }
+        return super.onOptionsItemSelected(item)
     }
+
+
+
 }

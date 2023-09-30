@@ -3,16 +3,20 @@ package com.example.submission1githubuser.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.submission1githubuser.R
 import com.example.submission1githubuser.ui.viewmodel.MainViewModel
 import com.example.submission1githubuser.ui.adapter.SearchAdapter
 import com.example.submission1githubuser.data.remote.respon.ItemsItem
-
 import com.example.submission1githubuser.databinding.ActivityMainBinding
 
 
@@ -29,10 +33,11 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
 
 
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
+        supportActionBar?.show()
         val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         val layoutManager = LinearLayoutManager(this)
@@ -56,7 +61,8 @@ class MainActivity : AppCompatActivity(),
                         // Lakukan tindakan lain yang Anda perlukan saat pengguna menekan tombol "Cari"
                         searchBar.text = searchView.text
                         searchView.hide()
-                        Toast.makeText(this@MainActivity, searchView.text, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, searchView.text, Toast.LENGTH_SHORT)
+                            .show()
 
                         true
                     } else {
@@ -102,4 +108,30 @@ class MainActivity : AppCompatActivity(),
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu1 -> {
+                Log.i("MainActivity", "onOptionsItemSelected: Setting")
+                val intent = Intent(this@MainActivity, SettingActivity::class.java)
+                startActivity(intent)
+                true
+            }
+
+            R.id.menu2 -> {
+                Log.i("MainActivity", "onOptionsItemSelected: Favo")
+
+                val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
+                startActivity(intent)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+
+        }
+    }
 }

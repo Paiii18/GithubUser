@@ -12,6 +12,6 @@ class FavoriteDiffCallback(private val oldFavoriteList: List<Favorite>, private 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldFavorite = oldFavoriteList[oldItemPosition]
         val newFavorite = newFavoriteList[newItemPosition]
-        return oldFavorite.title == newFavorite.title && oldFavorite.description == newFavorite.description
+        return oldFavorite.username == newFavorite.username && oldFavorite.avatarUrl == newFavorite.avatarUrl
     }
 }

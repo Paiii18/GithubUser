@@ -18,6 +18,68 @@ import com.google.android.material.tabs.TabLayoutMediator
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
+    private var isFavorite = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        val name = intent.getStringExtra(EXTRA_NAME)
+
+        val mainViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(MainViewModel::class.java)
+        mainViewModel.findDetail("$name")
+        mainViewModel.detailUser.observe(this) { userDetail ->
+            setUser(userDetail)
+        }
+
+        mainViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, username = "$name")
+        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
+
+
+    }
+
+    private fun setUser(user: DetailResponse) {
+        binding.apply {
+            tvName.text = user.name
+            tvUsername.text = user.login
+            tvFollower.text = "${user.followers}"
+            tvFollowing.text = "${user.following}"
+            tvRepo.text = user.publicRepos.toString()
+            Glide.with(this@DetailActivity)
+                .load(user.avatarUrl)
+                .into(binding.imageView)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun setFavorite(favorite: Boolean) {
+        isFavorite = favorite
+    }
+
+
+
+    private fun updateFavoriteButton() {
+        if (isFavorite) {
+            binding.fabAdd.setImageResource(R.drawable.ic_favorite)
+        } else {
+            binding.fabAdd.setImageResource(R.drawable.ic_favorite_border)
+        }
+    }
 
     companion object {
         const val ARG_USERNAME = "username"
@@ -28,45 +90,5 @@ class DetailActivity : AppCompatActivity() {
             R.string.tab_text_1,
             R.string.tab_text_2
         )
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        val name = intent.getStringExtra(EXTRA_NAME)
-
-        val mainViewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
-        mainViewModel.findDetail("$name")
-        mainViewModel.detailUser.observe(this) {userDetail ->
-            setUser(userDetail)
-        }
-
-        mainViewModel.isLoading.observe(this) {
-            showLoading(it)
-        }
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, username = "$name"  )
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        TabLayoutMediator(tabs, viewPager) { tab, position ->
-            tab.text = resources.getString(TAB_TITLES[position])
-        }.attach()
-    }
-
-    private fun setUser(user: DetailResponse) {
-        binding.tvName.text = user.name
-        binding.tvUsername.text = user.login
-        binding.tvFollower.text = "${user.followers}"
-        binding.tvFollowing.text = "${user.following}"
-        binding.tvRepo.text = user.publicRepos.toString()
-        Glide.with(this)
-            .load(user.avatarUrl)
-            .into(binding.imageView)
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

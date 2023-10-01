@@ -3,7 +3,6 @@ package com.example.submission1githubuser.data.remote.retrofit
 
 import com.example.submission1githubuser.data.remote.respon.DetailResponse
 import com.example.submission1githubuser.data.remote.respon.FollowersResponseItem
-import com.example.submission1githubuser.data.remote.respon.ItemsItem
 import com.example.submission1githubuser.data.remote.respon.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET

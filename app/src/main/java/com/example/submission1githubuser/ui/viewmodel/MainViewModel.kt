@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.submission1githubuser.data.database.Favorite
 import com.example.submission1githubuser.data.remote.respon.DetailResponse
 import com.example.submission1githubuser.data.remote.respon.FollowersResponseItem
 import com.example.submission1githubuser.data.remote.respon.ItemsItem
@@ -14,6 +15,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel : ViewModel() {
+
+    private val _favoriteUser = MutableLiveData<Favorite>()
+    val favoriteUser: LiveData<Favorite> = _favoriteUser
 
     private val _detailUser = MutableLiveData<DetailResponse>()
     val detailUser: LiveData<DetailResponse> = _detailUser
@@ -51,6 +55,7 @@ init {
 
                 if (response.isSuccessful){
                     _detailUser.postValue(response.body())
+
                 }else{
                     Log.e(TAG,"onFailure: ${response.message()}")
                 }

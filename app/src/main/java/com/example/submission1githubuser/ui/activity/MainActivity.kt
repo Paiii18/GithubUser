@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -106,6 +104,7 @@ class MainActivity : AppCompatActivity(),
         moveWithDataIntent.putExtra(DetailActivity.EXTRA_NAME, username)
         startActivity(moveWithDataIntent)
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.option_menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -130,7 +129,6 @@ class MainActivity : AppCompatActivity(),
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 
 }

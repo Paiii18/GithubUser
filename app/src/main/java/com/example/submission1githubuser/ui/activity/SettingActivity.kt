@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.example.submission1githubuser.R
 import com.example.submission1githubuser.ui.viewmodel.ThemeViewModel
-import com.example.submission1githubuser.ui.viewmodel.ViewModelFactory
+import com.example.submission1githubuser.ui.viewmodel.ThemeModelFactory
 import com.example.submission1githubuser.utils.SettingPreferences.SettingPreferences
 import com.example.submission1githubuser.utils.SettingPreferences.dataStore
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -21,7 +21,7 @@ class SettingActivity : AppCompatActivity() {
         val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
         val pref = SettingPreferences.getInstance(application.dataStore)
-        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+        val mainViewModel = ViewModelProvider(this, ThemeModelFactory(pref)).get(
             ThemeViewModel::class.java
         )
         mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->

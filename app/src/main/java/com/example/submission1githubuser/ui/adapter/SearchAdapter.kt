@@ -20,7 +20,7 @@ class SearchAdapter (private val onItemClickListener: OnItemClickListener) : Lis
 
             fun bind(review: ItemsItem) {
                 binding.tvName.text = review.login
-                binding.tvUrl.text = review.url
+                binding.tvUrl.text = review.htmlUrl
                 Glide.with(binding.root.context)
                     .load(review.avatarUrl)
                     .into(binding.ivImage)

@@ -15,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class APIViewModel(private val userRepository: UserRepository) : ViewModel() {
+class APIViewModel() : ViewModel() {
 
     private val _userUser = MutableLiveData<User>()
     val userUser: LiveData<User> = _userUser

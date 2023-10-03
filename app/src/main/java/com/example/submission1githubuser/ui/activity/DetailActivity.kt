@@ -68,7 +68,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setUser(user: DetailResponse) {
         binding.apply {
-            tvName.text = "${user.username}"
+            tvName.text = "${user.name}"
             tvUsername.text = user.login
             tvFollower.text = "${user.followers}"
             tvFollowing.text = "${user.following}"

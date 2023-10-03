@@ -16,5 +16,8 @@ data class ItemsItem(
     @field:SerializedName("avatar_url")
     val avatarUrl: String? = null,
 
+    @field:SerializedName("html_url")
+    val htmlUrl: String? = null,
+
     )
 

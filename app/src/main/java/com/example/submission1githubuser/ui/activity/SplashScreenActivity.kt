@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.example.submission1githubuser.R
 import com.example.submission1githubuser.ui.viewmodel.ThemeViewModel
-import com.example.submission1githubuser.ui.viewmodel.ThemeModelFactory
+import com.example.submission1githubuser.ui.viewmodel.FavoriteModelFactory
+import com.example.submission1githubuser.ui.viewmodel.ViewModelFactory
 import com.example.submission1githubuser.utils.SettingPreferences.SettingPreferences
 import com.example.submission1githubuser.utils.SettingPreferences.dataStore
 
@@ -28,7 +29,7 @@ class SplashScreenActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
 
         val pref = SettingPreferences.getInstance(application.dataStore)
-        val mainViewModel = ViewModelProvider(this, ThemeModelFactory(pref)).get(
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
             ThemeViewModel::class.java
         )
         mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->

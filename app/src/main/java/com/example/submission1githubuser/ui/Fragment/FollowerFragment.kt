@@ -14,7 +14,7 @@ import com.example.submission1githubuser.databinding.FragmentFollowerBinding
 import com.example.submission1githubuser.ui.activity.DetailActivity
 import com.example.submission1githubuser.ui.adapter.FollowersAdapter
 import com.example.submission1githubuser.data.remote.respon.FollowersResponseItem
-import com.example.submission1githubuser.ui.viewmodel.MainViewModel
+import com.example.submission1githubuser.ui.viewmodel.APIViewModel
 
 
 class FollowerFragment( val username : String) : Fragment(), FollowersAdapter.OnItemClickListener {
@@ -39,21 +39,21 @@ class FollowerFragment( val username : String) : Fragment(), FollowersAdapter.On
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val APIViewModel = ViewModelProvider(this).get(APIViewModel::class.java)
         Log.i("com.example.submission1githubuser.ui.Fragment.FollowerFragment", "onViewCreated: $username")
 
-        mainViewModel.fetchDataFollowers(username = username)
+        APIViewModel.fetchDataFollowers(username = username)
         val layoutManager = LinearLayoutManager(context)
 
         binding.rvFollower.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         binding.rvFollower.addItemDecoration(itemDecoration)
 
-        mainViewModel.listReviewFollower.observe(viewLifecycleOwner) { consumerReviews ->
+        APIViewModel.listReviewFollower.observe(viewLifecycleOwner) { consumerReviews ->
             setReviewData(consumerReviews)
         }
 
-        mainViewModel.isLoading.observe(viewLifecycleOwner) {
+        APIViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
     }

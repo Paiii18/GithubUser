@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -14,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1githubuser.R
-import com.example.submission1githubuser.ui.viewmodel.MainViewModel
+import com.example.submission1githubuser.ui.viewmodel.APIViewModel
 import com.example.submission1githubuser.ui.adapter.SearchAdapter
 import com.example.submission1githubuser.data.remote.respon.ItemsItem
 import com.example.submission1githubuser.databinding.ActivityMainBinding
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity(),
         setContentView(binding.root)
 
         supportActionBar?.show()
-        val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val APIViewModel = ViewModelProvider(this).get(APIViewModel::class.java)
 
         val layoutManager = LinearLayoutManager(this)
         binding.rvHome.layoutManager = layoutManager
@@ -50,10 +49,10 @@ class MainActivity : AppCompatActivity(),
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                         if (query.isEmpty()) {
                             // Jika pengguna tidak memasukkan teks, panggil metode fetchDataFromApi dengan nilai default "sahril"
-                            mainViewModel.findSearch()
+                            APIViewModel.findSearch()
                         } else {
                             // Jika pengguna memasukkan teks, panggil metode fetchDataFromApi dengan nilai query
-                            mainViewModel.findSearch(query)
+                            APIViewModel.findSearch(query)
                         }
 
                         // Lakukan tindakan lain yang Anda perlukan saat pengguna menekan tombol "Cari"
@@ -76,11 +75,11 @@ class MainActivity : AppCompatActivity(),
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.rvHome.addItemDecoration(itemDecoration)
 
-        mainViewModel.listUser.observe(this) { consumerReviews ->
+        APIViewModel.listUser.observe(this) { consumerReviews ->
             setReviewData(consumerReviews)
         }
 
-        mainViewModel.isLoading.observe(this) {
+        APIViewModel.isLoading.observe(this) {
             showLoading(it)
         }
 

@@ -9,8 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.submission1githubuser.databinding.ItemUserBinding
 import com.example.submission1githubuser.data.remote.respon.FollowersResponseItem
 
-class FollowingAdapter :
-    ListAdapter<FollowersResponseItem, FollowingAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FollowingAdapter : ListAdapter<FollowersResponseItem, FollowingAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(following: FollowersResponseItem) {

@@ -9,16 +9,19 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface FavoriteDao {
+interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(favorite: Favorite)
+    fun insert(user: User)
 
     @Update
-    fun update(favorite: Favorite)
+    fun update(user: User)
 
     @Delete
-    fun delete(favorite: Favorite)
+    fun delete(user: User)
 
-    @Query("SELECT * from favorite ORDER BY id ASC")
-    fun getAllFavorite(): LiveData<List<Favorite>>
+    @Query("SELECT * from User ORDER BY id ASC")
+    fun getAllFavorite(): LiveData<List<User>>
+
+    @Query("SELECT * FROM User WHERE id = :username")
+    fun getFavoriteUserByUsername(username: String): LiveData<User>
 }

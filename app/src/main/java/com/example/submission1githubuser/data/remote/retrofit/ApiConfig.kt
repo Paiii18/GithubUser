@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiConfig {
     companion object {
         private const val BASE_URL = "https://api.github.com/"
-        private const val TOKEN = "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"
+        private const val TOKEN = "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"
         fun getApiService(): ApiService {
 
             val loggingInterceptor =
@@ -20,13 +20,15 @@ class ApiConfig {
             val authInterceptor = Interceptor { chain ->
                 val originalRequest = chain.request()
                 val newRequest: Request = originalRequest.newBuilder()
-                    .addHeader("Authorization","token $TOKEN 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")
+                    .addHeader("Authorization","token $TOKEN")
                     .build()
                 chain.proceed(newRequest)
             }
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(authInterceptor)
+
                 .build()
 
             val retrofit = Retrofit.Builder()

@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onItemClick(item: ItemsItem) {
         val username = item.login
+        Log.i(TAG, "onItemClick: ${item.login}")
         val moveWithDataIntent = Intent(this@MainActivity, DetailActivity::class.java)
         moveWithDataIntent.putExtra(DetailActivity.EXTRA_NAME, username)
         startActivity(moveWithDataIntent)

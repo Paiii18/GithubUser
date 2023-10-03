@@ -2,6 +2,7 @@ package com.example.submission1githubuser.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.submission1githubuser.R
+import com.example.submission1githubuser.data.database.User
 import com.example.submission1githubuser.data.remote.respon.DetailResponse
 import com.example.submission1githubuser.databinding.ActivityDetailBinding
 import com.example.submission1githubuser.ui.adapter.SectionsPagerAdapter
@@ -22,6 +24,11 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private var isFavorite = false
+
+    private val userAddDeleteViewModel by lazy {
+        UserAddDeleteViewModel(application)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,8 +41,49 @@ class DetailActivity : AppCompatActivity() {
             ViewModelProvider.NewInstanceFactory()
         ).get(APIViewModel::class.java)
         APIViewModel.findDetail("$name")
+
         APIViewModel.detailUser.observe(this) { userDetail ->
             setUser(userDetail)
+            userAddDeleteViewModel.checkUser("${userDetail.id}").observe(this){
+                note ->
+                isFavorite = note != null
+
+                Log.i("DetailFragment", "onResponse: Note $isFavorite ")
+
+                if (isFavorite) {
+                    binding.fabAdd.setImageResource(R.drawable.ic_favorite)
+
+                } else {
+                    binding.fabAdd.setImageResource(R.drawable.ic_favorite_border)
+
+
+                }
+            }
+
+           binding.fabAdd.setOnClickListener {
+
+                val githubUser = User(
+                    id = userDetail.id!!,
+                    name = userDetail.login,
+                    username = userDetail.htmlUrl,
+                    avatarUrl = userDetail.avatarUrl
+                )
+
+
+
+
+                Log.i("DetailFragment", "onResponse: $isFavorite n ${userDetail.id} ")
+
+                if (isFavorite) {
+                    userAddDeleteViewModel.delete(githubUser)
+                    binding.fabAdd.setImageResource(R.drawable.ic_favorite_border)
+                    showToast(getString(R.string.delete))
+                } else {
+                    userAddDeleteViewModel.insert(githubUser)
+                    binding.fabAdd.setImageResource(R.drawable.ic_favorite)
+                    showToast(getString(R.string.added))
+                }
+            }
         }
 
         APIViewModel.isLoading.observe(this) {
@@ -50,16 +98,7 @@ class DetailActivity : AppCompatActivity() {
         }.attach()
 
 
-        val fabAdd = binding.fabAdd
-        val userAddDeleteViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(UserAddDeleteViewModel::class.java)
 
-        userAddDeleteViewModel.checkUser("$name").observe(this) { user ->
-            isFavorite = user != null
-            updateFavoriteButton()
-        }
 
 
     }

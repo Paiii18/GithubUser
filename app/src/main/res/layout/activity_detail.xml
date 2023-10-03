@@ -142,5 +142,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
-        app:srcCompat="@drawable/ic_favorite" />
+        app:srcCompat="@drawable/ic_favorite_border" />
 </androidx.constraintlayout.widget.ConstraintLayout>

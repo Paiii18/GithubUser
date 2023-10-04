@@ -23,7 +23,7 @@ class FavoriteModelFactory private constructor(private val mApplication: Applica
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ThemeViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             return MainViewModel(mApplication) as T
         } else if (modelClass.isAssignableFrom(UserAddDeleteViewModel::class.java)) {
             return UserAddDeleteViewModel(mApplication) as T

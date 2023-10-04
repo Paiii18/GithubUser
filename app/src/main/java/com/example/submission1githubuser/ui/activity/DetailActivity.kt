@@ -40,6 +40,8 @@ class DetailActivity : AppCompatActivity() {
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(APIViewModel::class.java)
+        Log.i("FavoriteActivity", "onItemClick: detail ${name} ")
+
         APIViewModel.findDetail("$name")
 
         APIViewModel.detailUser.observe(this) { userDetail ->

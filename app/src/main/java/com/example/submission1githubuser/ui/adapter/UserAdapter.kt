@@ -10,13 +10,16 @@ import com.example.submission1githubuser.data.helper.FavoriteDiffCallback
 import com.example.submission1githubuser.databinding.ItemUserBinding
 
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.NoteViewHolder>() {
+class UserAdapter(private val onItemClickListener: UserAdapter.OnItemClickListener) : RecyclerView.Adapter<UserAdapter.NoteViewHolder>() {
     private val listUser = ArrayList<User>()
+    interface OnItemClickListener {
+        fun onItemClick(item: User)
+    }
     fun setListNotes(listGithubUser: List<User>) {
         val diffCallback = FavoriteDiffCallback(this.listUser, listGithubUser)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         this.listUser.clear()
-        this.listUser.addAll(listUser)
+        this.listUser.addAll(listGithubUser)
         diffResult.dispatchUpdatesTo(this)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -32,11 +35,15 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.NoteViewHolder>() {
     inner class NoteViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(review: User) {
             with(binding) {
-                binding.tvName.text = "${review.username}"
-                binding.tvUrl.text = review.avatarUrl
+                binding.tvName.text = "${review.name}"
+                binding.tvUrl.text = review.username
                 Glide.with(binding.root.context)
-                    .load(review.name)
+                    .load(review.avatarUrl)
                     .into(binding.ivImage)
+
+                itemView.setOnClickListener {
+                    onItemClickListener.onItemClick(review)
+                }
             }
         }
     }

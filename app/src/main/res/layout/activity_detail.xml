@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.DetailActivity">
+    tools:context="com.example.submission2githubuser.ui.activity.DetailActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
@@ -113,7 +113,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:tabTextColor="@android:color/white" />
+            app:tabTextColor="@android:color/white"
+            android:contentDescription="Tab Pilihan"/>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
@@ -142,5 +143,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
-        app:srcCompat="@drawable/ic_favorite_border" />
+        app:srcCompat="@drawable/ic_favorite_border"
+        android:contentDescription="Tombol Tambah"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,13 +15,13 @@
         android:theme="@style/Theme.Submission1GitHubUser"
         tools:targetApi="31" >
         <activity
-            android:name=".ui.activity.FavoriteActivity"
+            android:name="com.example.submission2githubuser.ui.activity.FavoriteActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.SettingActivity"
+            android:name="com.example.submission2githubuser.ui.activity.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.SplashScreenActivity"
+            android:name="com.example.submission2githubuser.ui.activity.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.Material3.Light.NoActionBar" >
             <intent-filter>
@@ -31,12 +31,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.DetailActivity"
+            android:name="com.example.submission2githubuser.ui.activity.DetailActivity"
             android:exported="false"
-            android:parentActivityName=".ui.activity.MainActivity"
-            android:theme="@style/Theme.Material3.Light" />
+            android:parentActivityName="com.example.submission2githubuser.ui.activity.MainActivity"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name="com.example.submission2githubuser.ui.activity.MainActivity"
             android:exported="true" >
         </activity>
     </application>

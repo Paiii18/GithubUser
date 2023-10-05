@@ -91,7 +91,10 @@ class DetailActivity : AppCompatActivity() {
         APIViewModel.isLoading.observe(this) {
             showLoading(it)
         }
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, username = "$name")
+        val bundle = Bundle()
+        bundle.putString(ARG_USERNAME, name)
+        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+
         val viewPager: ViewPager2 = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs

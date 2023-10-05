@@ -1,4 +1,4 @@
-//package com.example.submission2githubuser.ui.Fragment
+package com.example.submission2githubuser.ui.Fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,23 +14,11 @@ import com.example.submission1githubuser.databinding.FragmentFollowerBinding
 import com.example.submission2githubuser.ui.activity.DetailActivity
 import com.example.submission2githubuser.ui.adapter.FollowersAdapter
 import com.example.submission2githubuser.data.remote.respon.FollowersResponseItem
-import com.example.submission2githubuser.ui.activity.DetailActivity.Companion.ARG_USERNAME
 import com.example.submission2githubuser.ui.viewmodel.APIViewModel
 
 
 class FollowerFragment( val username : String) : Fragment(), FollowersAdapter.OnItemClickListener {
 
-//    companion object {
-//        private const ARG_USERNAME = "username"
-//
-//        fun newInstance(username: String): FollowerFragment {
-//            val fragment = FollowerFragment()
-//            val args = Bundle()
-//            args.putString(ARG_USERNAME, username)
-//            fragment.arguments = args
-//            return fragment
-//        }
-//    }
     private var _binding: FragmentFollowerBinding? = null
     private val binding get() = _binding!!
 

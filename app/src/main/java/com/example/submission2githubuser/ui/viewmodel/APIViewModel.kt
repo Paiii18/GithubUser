@@ -1,5 +1,6 @@
 package com.example.submission2githubuser.ui.viewmodel
 
+import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +11,7 @@ import com.example.submission2githubuser.data.remote.respon.FollowersResponseIte
 import com.example.submission2githubuser.data.remote.respon.ItemsItem
 import com.example.submission2githubuser.data.remote.respon.SearchResponse
 import com.example.submission2githubuser.data.remote.retrofit.ApiConfig
+import com.example.submission2githubuser.ui.activity.DetailActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
